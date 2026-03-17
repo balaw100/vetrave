@@ -179,6 +179,35 @@ nav .container {
   margin-bottom: 12px;
 }
 
+/* Hero 2x2 grid */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.hero-grid-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hero-grid-box svg {
+  flex-shrink: 0;
+  margin-bottom: 4px;
+}
+.hero-grid-box strong {
+  color: var(--white);
+  font-size: 0.95rem;
+}
+.hero-grid-box span {
+  color: var(--white-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
 /* Hero review mock */
 .hero-review-mock {
   background: rgba(255, 255, 255, 0.03);
@@ -472,6 +501,7 @@ footer p { color: var(--white-dim); font-size: 0.8rem; }
   .proof-bar .container { gap: 32px; }
   .hero { padding: 130px 0 56px; }
   .hero-card .spotlight-inner { grid-template-columns: 1fr; gap: 32px; }
+  .hero-grid { grid-template-columns: 1fr; }
   .spotlight-inner,
   .spotlight-inner.reverse { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
   .problem-grid { grid-template-columns: 1fr; }
@@ -500,44 +530,39 @@ footer p { color: var(--white-dim); font-size: 0.8rem; }
       <p><span class="gold">VetRave</span> handles that for you, automatically.</p>
     </div>
     <div class="section-card hero-card">
-      <div class="spotlight-inner">
-        <div class="hero-visual">
-          <div class="hero-mock-label" style="text-align:center;">Example</div>
-          <div class="hero-review-mock">
-            <div class="hero-mock-header">
-              <span class="review-stars">★★★★☆</span>
-              <span style="font-size:0.8rem; color:var(--white-dim);">New review from Google</span>
-            </div>
-            <p class="hero-mock-body">"Love Dr. Chen — she's great with our dog Barkley. Only reason for 4 stars is the wait was almost 45 minutes."</p>
-            <div class="hero-mock-divider"></div>
-            <div class="hero-mock-response">
-              <span class="review-tag">VetRave Response</span>
-              <p class="hero-mock-body">Thank you for trusting us with Barkley! Dr. Chen loved seeing him. We're very sorry about the wait — 45 minutes isn't the experience we want for you or Barkley.</p>
-            </div>
-          </div>
+      <div class="hero-mock-label" style="text-align:center;">Example</div>
+      <div class="hero-review-mock" style="max-width:600px; margin:0 auto 32px;">
+        <div class="hero-mock-header">
+          <span class="review-stars">★★★★☆</span>
+          <span style="font-size:0.8rem; color:var(--white-dim);">New review from Google</span>
         </div>
-        <div class="hero-points">
-          <div class="hero-point">
-            <span class="hero-point-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg></span>
-            <div>
-              <strong>You choose the reply style.</strong>
-              <span>Friendly, professional, warm — you set the style. VetRave weaves in details from each review. Every response feels personal.</span>
-            </div>
-          </div>
-          <div class="hero-point">
-            <span class="hero-point-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><path d="M18 8H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2z"/><circle cx="12" cy="15" r="1.5"/></svg></span>
-            <div>
-              <strong>We reply appropriately.</strong>
-              <span>Praise gets a thank-you. Complaints get care. VetRave knows the difference between a billing gripe and a grieving pet owner — and responds accordingly.</span>
-            </div>
-          </div>
-          <div class="hero-point">
-            <span class="hero-point-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="8" r="2"/><circle cx="17" cy="8" r="2"/><circle cx="5" cy="15" r="1.5"/><circle cx="19" cy="15" r="1.5"/><ellipse cx="12" cy="18" rx="4" ry="3"/></svg></span>
-            <div>
-              <strong>Always on. You decide when it's automatic.</strong>
-              <span>Start by reviewing every response before it posts. When you trust us, flip to auto.</span>
-            </div>
-          </div>
+        <p class="hero-mock-body">"Love Dr. Chen — she's great with our dog Barkley. Only reason for 4 stars is the wait was almost 45 minutes."</p>
+        <div class="hero-mock-divider"></div>
+        <div class="hero-mock-response">
+          <span class="review-tag">VetRave Response</span>
+          <p class="hero-mock-body">Thank you for trusting us with Barkley! Dr. Chen loved seeing him. We're very sorry about the wait — 45 minutes isn't the experience we want for you or Barkley.</p>
+        </div>
+      </div>
+      <div class="hero-grid">
+        <div class="hero-grid-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
+          <strong>You choose the reply style.</strong>
+          <span>Friendly, professional, warm — you set the style. VetRave weaves in details from each review.</span>
+        </div>
+        <div class="hero-grid-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><path d="M18 8H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2z"/><circle cx="12" cy="15" r="1.5"/></svg>
+          <strong>We reply appropriately.</strong>
+          <span>VetRave knows the difference between a billing gripe and a grieving pet owner — and responds accordingly.</span>
+        </div>
+        <div class="hero-grid-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+          <strong>Always on. You decide when it's automatic.</strong>
+          <span>When you start with VetRave, you review every response before it posts. When you trust us, flip to auto.</span>
+        </div>
+        <div class="hero-grid-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <strong>Sensitive reviews get flagged.</strong>
+          <span>Legal concerns, complaints about outcomes, or anything that needs a personal touch — we send it to you instead of responding.</span>
         </div>
       </div>
     </div>
