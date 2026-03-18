@@ -143,28 +143,33 @@ nav .container {
   margin-bottom: 20px;
   text-align: center;
 }
-.hero-lines {
-  max-width: 620px;
+@media (min-width: 769px) {
+  .hero-kicker { font-size: 1.05rem; }
+}
+.hero-bullets {
+  max-width: 520px;
   margin: 0 auto 40px;
-  text-align: center;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
-.hero-lines p {
-  font-size: 1.05rem;
+.hero-bullet {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 1rem;
   color: var(--white-muted);
-  line-height: 1.6;
-  margin-bottom: 10px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  line-height: 1.5;
 }
-.hero-lines p.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.hero-lines-bold {
-  color: var(--white) !important;
-  font-weight: 600;
-  margin-top: 16px !important;
+.hero-bullet-dot {
+  color: var(--gold);
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
 }
 .hero-card {
   max-width: 960px;
@@ -278,8 +283,6 @@ nav .container {
 /* — SOCIAL PROOF BAR — */
 .proof-bar {
   padding: 24px 0;
-  border-top: 1px solid var(--glass-border);
-  border-bottom: 1px solid var(--glass-border);
 }
 .proof-bar .container {
   display: flex;
@@ -521,14 +524,27 @@ footer p { color: var(--white-dim); font-size: 0.8rem; }
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <div class="hero-kicker">Built Exclusively for Veterinary Practices</div>
+    <div class="hero-kicker">Built for Veterinary Practices</div>
     <h1>All Your Google Reviews <span class="gradient-text">Answered Automatically</span></h1>
-    <div class="hero-lines">
-      <p>Most pet owners pick their next vet from <span class="gold">Google reviews</span>.</p>
-      <p>They notice who <span class="gold">responds</span> to their reviews — and who doesn't.</p>
-      <p>Practices that respond rank higher and <span class="gold">win more business</span>.</p>
-      <p><span class="gold">VetRave</span> handles that for you, automatically.</p>
+    <div class="hero-bullets">
+      <div class="hero-bullet"><span class="hero-bullet-dot">·</span><span>Pet owners choose their next vet from <span class="gold">Google reviews</span>.</span></div>
+      <div class="hero-bullet"><span class="hero-bullet-dot">·</span><span>Practices that respond to reviews <span class="gold">win more clients</span>.</span></div>
+      <div class="hero-bullet"><span class="hero-bullet-dot">·</span><span>VetRave handles every response for you, <span class="gold">automatically</span>.</span></div>
     </div>
+    <section class="proof-bar">
+      <div class="container">
+        <div class="proof-item">
+          <div class="proof-number">81%</div>
+          <div class="proof-label">of consumers check Google reviews<br>before choosing a business</div>
+          <div class="proof-cite">— BrightLocal, 2024</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-number">35%</div>
+          <div class="proof-label">more revenue for businesses<br>that respond to reviews</div>
+          <div class="proof-cite">— Guac Digital / SOCi Research</div>
+        </div>
+      </div>
+    </section>
     <div class="section-card hero-card">
       <div class="hero-grid">
         <div class="hero-grid-box">
@@ -571,21 +587,7 @@ footer p { color: var(--white-dim); font-size: 0.8rem; }
   </div>
 </section>
 
-<!-- SOCIAL PROOF -->
-<section class="proof-bar">
-  <div class="container">
-    <div class="proof-item">
-      <div class="proof-number">81%</div>
-      <div class="proof-label">of consumers check Google reviews<br>before choosing a business</div>
-      <div class="proof-cite">— BrightLocal, 2024</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-number">35%</div>
-      <div class="proof-label">more revenue for businesses<br>that respond to reviews</div>
-      <div class="proof-cite">— Guac Digital / SOCi Research</div>
-    </div>
-  </div>
-</section>
+
 
 <!-- SENTIMENT DASHBOARD -->
 <section class="spotlight">
@@ -695,7 +697,7 @@ footer p { color: var(--white-dim); font-size: 0.8rem; }
     <div class="section-card" style="text-align:center;">
       <h2>We'd love your input. <span class="gradient-text">Let's talk.</span></h2>
       <p style="color:var(--white-muted); max-width:500px; margin:0 auto 36px; font-size:1.05rem;">VetRave is in active development and we need input from veterinary professionals to help shape the product. If any of this sounds useful, we'd love to hear from you.</p>
-      <p class="contact-line"><a href="mailto:bruce@vetrave.com">bruce@vetrave.com</a> &nbsp;·&nbsp; <a href="tel:8587617712">(858) 761-7712</a></p>
+      <p class="contact-line"><a href="mailto:info@vetrave.com">info@vetrave.com</a> &nbsp;·&nbsp; <a href="tel:8587617712">(858) 761-7712</a></p>
     </div>
   </div>
 </section>
@@ -707,41 +709,12 @@ footer p { color: var(--white-dim); font-size: 0.8rem; }
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.addEventListener('DOMContentLoaded', function() {
   var lines = document.querySelectorAll('.hero-lines p');
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        var parent = entry.target;
-        var children = parent.querySelectorAll('p');
-        if (children.length === 0) {
-          // Single element observed
-          return;
-        }
-      }
-    });
-  });
-
-  // Stagger the lines with delay
   function revealLines() {
     var container = document.querySelector('.hero-lines');
     var rect = container.getBoundingClientRect();
     if (rect.top < window.innerHeight * 0.85) {
       lines.forEach(function(line, i) {
-        setTimeout(function() {
-          line.classList.add('visible');
-        }, i * 400);
-      });
-      window.removeEventListener('scroll', revealLines);
-    }
-  }
-
-  // Check on load and scroll
-  revealLines();
-  window.addEventListener('scroll', revealLines);
-});
-</script>
-
-</body>
-</html>
+        setTimeout(function()
