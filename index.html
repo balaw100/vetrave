@@ -4,12 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Primary SEO -->
 <title>VetRave — Automatic Google Review Responses for Vets</title>
 <meta name="description" content="VetRave automatically responds to your Google reviews. Built for veterinarians.">
 <link rel="canonical" href="https://vetrave.com">
 
-<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vetrave.com">
 <meta property="og:title" content="VetRave — Automatic Google Review Responses for Vets">
@@ -18,14 +16,12 @@
 <meta property="og:image" content="https://vetrave.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="twitter:image" content="https://vetrave.com/og-image.png">
 
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VetRave — Automatic Google Review Responses for Vets">
 <meta name="twitter:description" content="VetRave automatically responds to your Google reviews. Built for veterinarians.">
+<meta name="twitter:image" content="https://vetrave.com/og-image.png">
 
-<!-- Structured Data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -55,13 +51,10 @@
   --gold-light: #FFC857;
   --gold-dark: #D4891A;
   --black: #0A0A0A;
-  --black-light: #111111;
-  --black-card: #1A1A1A;
   --black-border: #2A2A2A;
   --white: #FAFAFA;
   --white-muted: #B0B0B0;
   --white-dim: #808080;
-  --green: #34D399;
   --glass-bg: rgba(255, 255, 255, 0.04);
   --glass-border: rgba(255, 255, 255, 0.08);
   --section-tint: rgba(255, 255, 255, 0.01);
@@ -179,11 +172,74 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
 .step h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
 .step p { color: var(--white-muted); font-size: 0.85rem; line-height: 1.5; }
 
+/* Contact form */
 .bottom-cta { padding: var(--section-pad) 0; text-align: center; }
 .bottom-cta h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; margin-bottom: 16px; }
-.contact-line { font-size: 1.1rem; color: var(--white); }
-.contact-line a { color: var(--gold); text-decoration: none; font-weight: 600; }
-.contact-line a:hover { text-decoration: underline; }
+
+.contact-btn {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--black);
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.contact-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+.contact-form-wrap {
+  max-width: 520px;
+  margin: 32px auto 0;
+  display: none;
+  text-align: left;
+}
+.contact-form-wrap.open { display: block; }
+
+.contact-form-wrap form { display: flex; flex-direction: column; gap: 16px; }
+
+.contact-form-wrap input,
+.contact-form-wrap textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.contact-form-wrap input:focus,
+.contact-form-wrap textarea:focus { border-color: var(--gold); }
+.contact-form-wrap input::placeholder,
+.contact-form-wrap textarea::placeholder { color: var(--white-dim); }
+.contact-form-wrap textarea { resize: vertical; min-height: 120px; }
+
+.contact-form-wrap button[type="submit"] {
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+}
+.contact-form-wrap button[type="submit"]:hover { background: var(--gold-light); }
+
+.form-success {
+  display: none;
+  color: var(--gold);
+  font-size: 1rem;
+  margin-top: 16px;
+  text-align: center;
+}
 
 footer { padding: 40px 0; border-top: 1px solid var(--glass-border); text-align: center; }
 footer p { color: var(--white-dim); font-size: 0.8rem; }
@@ -379,7 +435,47 @@ footer p { color: var(--white-dim); font-size: 0.8rem; }
     <div class="section-card" style="text-align:center;">
       <h2>We'd love your input. <span class="gradient-text">Let's talk.</span></h2>
       <p style="color:var(--white-muted); max-width:500px; margin:0 auto 36px; font-size:1.05rem;">VetRave is in active development and we need input from veterinary professionals to help shape the product. If any of this sounds useful, we'd love to hear from you.</p>
-      <p class="contact-line"><a href="/cdn-cgi/l/email-protection#41282f272e01372435332037246f222e2c"><span class="__cf_email__" data-cfemail="4c25222a230c3a29383e2d3a29622f2321">[email&#160;protected]</span></a> &nbsp;·&nbsp; <a href="tel:8587617712">(858)&nbsp;761&#8209;7712</a></p>
+      <button class="contact-btn" onclick="toggleForm()">Contact Us</button>
+      <div class="contact-form-wrap" id="contactForm">
+        <form action="https://formspree.io/f/maqpaabj" method="POST" onsubmit="handleSubmit(event)">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+          <textarea name="message" placeholder="Tell us about your practice or ask us anything..."></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <p class="form-success" id="formSuccess">Thanks — we'll be in touch soon.</p>
+      </div>
     </div>
   </div>
-</s
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 VetRave. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+function toggleForm() {
+  var form = document.getElementById('contactForm');
+  form.classList.toggle('open');
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  var form = e.target;
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(function(response) {
+    if (response.ok) {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    }
+  });
+}
+</script>
+
+</body>
+</html>
