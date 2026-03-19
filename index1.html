@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VetRave | Automated Google Review Management for Veterinarians</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-container": "#454747",
+                        "inverse-primary": "#835500",
+                        "on-secondary": "#2f3131",
+                        "tertiary-fixed-dim": "#fcba5c",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#353534",
+                        "on-background": "#e5e2e1",
+                        "on-surface": "#e5e2e1",
+                        "primary-fixed": "#ffddb4",
+                        "on-tertiary": "#452b00",
+                        "on-primary": "#452b00",
+                        "outline": "#9f8e7a",
+                        "surface-container": "#201f1f",
+                        "on-tertiary-fixed": "#291800",
+                        "on-tertiary-fixed-variant": "#633f00",
+                        "surface-variant": "#353534",
+                        "on-primary-container": "#644000",
+                        "tertiary-container": "#e9aa4e",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-container": "#b4b5b5",
+                        "inverse-on-surface": "#313030",
+                        "on-primary-fixed": "#291800",
+                        "surface-dim": "#131313",
+                        "on-surface-variant": "#d7c3ae",
+                        "surface-container-lowest": "#0e0e0e",
+                        "tertiary": "#ffc87d",
+                        "on-tertiary-container": "#634000",
+                        "on-error": "#690005",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-bright": "#3a3939",
+                        "secondary-fixed": "#e2e2e2",
+                        "primary": "#ffc880",
+                        "tertiary-fixed": "#ffddb4",
+                        "surface-tint": "#ffb955",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "secondary": "#c6c6c7",
+                        "surface": "#131313",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#633f00",
+                        "outline-variant": "#524534",
+                        "primary-container": "#f5a623",
+                        "primary-fixed-dim": "#ffb955",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "background": "#131313"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .premium-gradient {
+            background: radial-gradient(circle at top left, #ffc880, #f5a623);
+        }
+        .glass-panel {
+            background: rgba(28, 27, 27, 0.5);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] bg-[#1C1B1B]/50 backdrop-blur-xl">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#F5A623] text-3xl" data-icon="token">token</span>
+<span class="text-2xl font-headline font-bold tracking-tighter text-[#E5E2E1]">VetRave</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-[#F5A623] font-semibold font-label" href="#">Product</a>
+<a class="text-[#D7C3AE] hover:text-[#E5E2E1] transition-all duration-300 font-label" href="#">Intelligence</a>
+<a class="text-[#D7C3AE] hover:text-[#E5E2E1] transition-all duration-300 font-label" href="#">Security</a>
+</nav>
+<button class="bg-[#2A2A2A] px-6 py-2 rounded-lg text-[#E5E2E1] font-semibold hover:bg-[#353534] transition-all duration-300 active:scale-95">
+                Launch App
+            </button>
+</div>
+</header>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative min-h-[795px] flex items-center justify-center overflow-hidden px-6">
+<div class="absolute inset-0 z-0">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px]"></div>
+</div>
+<div class="relative z-10 max-w-5xl text-center space-y-12">
+<div class="space-y-6">
+<h1 class="text-5xl md:text-7xl font-headline font-bold text-on-surface tracking-tight leading-[1.1]">
+                        All Your Google Reviews <br/>
+<span class="text-primary italic">Answered Automatically</span>
+</h1>
+<p class="text-on-surface-variant text-xl md:text-2xl max-w-2xl mx-auto font-light leading-relaxed">
+                        Precision-engineered intelligence for veterinary practices. Save hours every week while maintaining a gold-standard reputation.
+                    </p>
+</div>
+<div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+<div class="glass-panel p-6 rounded-xl border border-outline-variant/15 w-full md:w-64 text-left shadow-xl">
+<div class="text-4xl font-headline font-bold text-primary mb-1">81%</div>
+<div class="text-on-surface-variant text-sm font-medium uppercase tracking-wider">Increase in Visibility</div>
+</div>
+<div class="glass-panel p-6 rounded-xl border border-outline-variant/15 w-full md:w-64 text-left shadow-xl">
+<div class="text-4xl font-headline font-bold text-primary mb-1">58%</div>
+<div class="text-on-surface-variant text-sm font-medium uppercase tracking-wider">Time Savings</div>
+</div>
+</div>
+<div class="pt-8">
+<button class="premium-gradient text-on-primary font-bold px-10 py-5 rounded-lg text-lg shadow-2xl hover:brightness-110 transition-all active:scale-95">
+                        Start Your Free Trial
+                    </button>
+</div>
+</div>
+</section>
+<!-- Example/Response Section -->
+<section class="py-24 px-6 bg-surface-container-low">
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<h2 class="text-4xl font-headline font-bold">The Intelligence in Action</h2>
+<p class="text-on-surface-variant text-lg">VetRave understands medical nuance. It doesn't just "reply"—it engages with empathy and expertise tailored to your clinic's voice.</p>
+</div>
+<div class="space-y-6 relative">
+<!-- Review Card -->
+<div class="bg-surface-container-highest p-6 rounded-xl shadow-lg border-l-4 border-primary/40 transform -rotate-1">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<div>
+<div class="font-bold text-sm">Sarah Jenkins</div>
+<div class="flex text-primary text-xs">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<p class="text-on-surface leading-relaxed">"Dr. Aris and the team were amazing with my nervous cat, Luna. They took their time and explained everything so clearly. Best vet experience we've had."</p>
+</div>
+<!-- AI Response -->
+<div class="bg-surface-container p-8 rounded-xl shadow-2xl border border-primary/20 transform rotate-1 relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-bold text-xs tracking-widest uppercase text-primary">VetRave Autopilot</span>
+</div>
+<p class="text-on-surface-variant italic leading-relaxed">
+                            "Hi Sarah, thank you for the kind words! We're so glad we could make Luna feel comfortable during her visit. Dr. Aris and the entire team at Maple Leaf Vet truly value your trust. Give Luna some extra pets from us!"
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-24 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="grid md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-surface-container-low p-10 rounded-2xl border border-outline-variant/10 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="edit_note">edit_note</span>
+<h3 class="text-2xl font-headline font-bold mb-4">You choose the reply style</h3>
+<p class="text-on-surface-variant leading-relaxed">From professional and clinical to warm and community-focused, we mirror your clinic's unique personality perfectly.</p>
+</div>
+<div class="bg-surface-container-low p-10 rounded-2xl border border-outline-variant/10 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="shield">shield</span>
+<h3 class="text-2xl font-headline font-bold mb-4">Sensitive reviews get flagged</h3>
+<p class="text-on-surface-variant leading-relaxed">Negative or complex medical reviews are immediately sent for manual review. We never misstep.</p>
+</div>
+<div class="bg-surface-container-low p-10 rounded-2xl border border-outline-variant/10 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="bolt">bolt</span>
+<h3 class="text-2xl font-headline font-bold mb-4">We reply appropriately</h3>
+<p class="text-on-surface-variant leading-relaxed">Context-aware responses that address specific procedures or staff mentions mentioned by your clients.</p>
+</div>
+<div class="md:col-span-2 bg-surface-container-low p-10 rounded-2xl border border-outline-variant/10 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="update">update</span>
+<h3 class="text-2xl font-headline font-bold mb-4">Always on</h3>
+<p class="text-on-surface-variant leading-relaxed">Reviews are answered within minutes, not days. This rapid response signals to both Google and your clients that you are attentive and professional.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Analytics/Trends -->
+<section class="py-24 px-6 bg-surface-dim">
+<div class="max-w-7xl mx-auto space-y-16">
+<div class="text-center max-w-2xl mx-auto space-y-4">
+<h2 class="text-4xl font-headline font-bold">Performance Intelligence</h2>
+<p class="text-on-surface-variant">Real-time data visualization of your practice's digital health.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-12">
+<!-- Chart 1 -->
+<div class="bg-surface-container-low p-8 rounded-2xl border border-outline-variant/10">
+<div class="flex justify-between items-center mb-8">
+<h4 class="font-headline font-bold">Average Wait Time Trend</h4>
+<span class="text-primary text-sm font-label">-12% this month</span>
+</div>
+<div class="flex items-end gap-3 h-48">
+<div class="flex-1 bg-primary/20 rounded-t-lg h-2/3 relative group">
+<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity blur-md"></div>
+</div>
+<div class="flex-1 bg-primary/20 rounded-t-lg h-1/2"></div>
+<div class="flex-1 bg-primary/20 rounded-t-lg h-3/4"></div>
+<div class="flex-1 bg-primary/20 rounded-t-lg h-2/5"></div>
+<div class="flex-1 bg-primary/20 rounded-t-lg h-5/6"></div>
+<div class="flex-1 bg-primary/80 rounded-t-lg h-[90%] shadow-[0_0_20px_rgba(255,200,128,0.3)]"></div>
+<div class="flex-1 bg-primary/20 rounded-t-lg h-1/2"></div>
+</div>
+</div>
+<!-- Chart 2 -->
+<div class="bg-surface-container-low p-8 rounded-2xl border border-outline-variant/10">
+<div class="flex justify-between items-center mb-8">
+<h4 class="font-headline font-bold">Client Sentiment Score</h4>
+<span class="text-primary text-sm font-label">98.4/100</span>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-label text-on-surface-variant">
+<span>POSITIVE</span>
+<span>92%</span>
+</div>
+<div class="h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full premium-gradient w-[92%]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-label text-on-surface-variant">
+<span>NEUTRAL</span>
+<span>6%</span>
+</div>
+<div class="h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[6%]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-label text-on-surface-variant">
+<span>NEGATIVE</span>
+<span>2%</span>
+</div>
+<div class="h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-error/50 w-[2%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- QR Code Section -->
+<section class="py-24 px-6 bg-surface-container-low relative overflow-hidden">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+<div class="flex-1 space-y-8">
+<h2 class="text-4xl font-headline font-bold">Drive More Reviews Seamlessly</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed">
+                        We provide your practice with a premium physical touchpoint. Clients simply scan to share their positive experience directly on Google.
+                    </p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+<span>Branded QR frames for reception</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+<span>Direct link to Google review engine</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+<span>Track scans and conversion in dashboard</span>
+</li>
+</ul>
+</div>
+<div class="flex-1 flex justify-center">
+<div class="bg-surface p-12 rounded-3xl border-8 border-outline-variant/10 shadow-2xl relative">
+<div class="absolute -top-4 -right-4 bg-primary text-on-primary font-bold px-4 py-1 rounded-full text-sm">SCAN ME</div>
+<img alt="QR Code Visualization" class="w-48 h-48 opacity-80 mix-blend-screen grayscale contrast-125" data-alt="Abstract QR code artistic representation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxL1k-uhhiLIrBkqiwid_rlIMwAaIi32mxF9ellf7G1N1GckwbYSKThkhgDp9CfKXD2D7IPEziH6eyIMAA1_pwxqN4l_a8sefWYrlrtcg4qAnO1sghQl_NgrcOdxVu2FUqK86itceEGY404DEkw2i_e1rhMge9PPaWArztEOp99x-sEIl-Xklq5NOWzPXvqLBc6eROgzj3NG_wBC6HUGVmVXQpELaYRt0GQXJL0wvjRpVLiDiL7sOnw5urkGJzHpsN6RHJ9c_a_HF_HWU"/>
+<div class="mt-8 text-center">
+<p class="text-on-surface-variant text-sm font-label italic">Custom Frame Included</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Setup Steps -->
+<section class="py-24 px-6">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-headline font-bold">Setup in Minutes</h2>
+</div>
+<div class="space-y-12 relative">
+<div class="absolute left-[27px] top-4 bottom-4 w-px bg-outline-variant/30 hidden md:block"></div>
+<div class="flex flex-col md:flex-row gap-8 relative">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest border border-primary/40 flex items-center justify-center font-headline font-bold text-primary text-xl z-10 shrink-0">1</div>
+<div class="space-y-2">
+<h4 class="text-xl font-bold">Connect your Google Business Profile</h4>
+<p class="text-on-surface-variant leading-relaxed">Secure OAuth connection ensures we have the rights to manage your reputation without compromising your security.</p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-8 relative">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest border border-primary/40 flex items-center justify-center font-headline font-bold text-primary text-xl z-10 shrink-0">2</div>
+<div class="space-y-2">
+<h4 class="text-xl font-bold">Configure your Voice</h4>
+<p class="text-on-surface-variant leading-relaxed">Select from our pre-defined veterinary reply personas or customize your own brand guidelines in the settings.</p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-8 relative">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest border border-primary/40 flex items-center justify-center font-headline font-bold text-primary text-xl z-10 shrink-0">3</div>
+<div class="space-y-2">
+<h4 class="text-xl font-bold">Go Live</h4>
+<p class="text-on-surface-variant leading-relaxed">Switch on "Autopilot" and watch your engagement metrics climb while you focus on patient care.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Built for Veterinary Practices -->
+<section class="py-24 px-6 bg-surface-container-low border-y border-outline-variant/10">
+<div class="max-w-7xl mx-auto text-center space-y-12">
+<h2 class="text-3xl md:text-4xl font-headline font-bold">Built for Veterinary Practices</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="space-y-4">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="pets">pets</span>
+<p class="font-bold text-sm uppercase tracking-widest">Animal Hospitals</p>
+</div>
+<div class="space-y-4">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="emergency">emergency</span>
+<p class="font-bold text-sm uppercase tracking-widest">ER Clinics</p>
+</div>
+<div class="space-y-4">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="house">house</span>
+<p class="font-bold text-sm uppercase tracking-widest">Mobile Vets</p>
+</div>
+<div class="space-y-4">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="medical_services">medical_services</span>
+<p class="font-bold text-sm uppercase tracking-widest">Specialists</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-32 px-6">
+<div class="max-w-4xl mx-auto glass-panel p-16 rounded-3xl border border-primary/20 text-center space-y-8 shadow-2xl">
+<h2 class="text-4xl md:text-5xl font-headline font-bold">Ready to Elevate Your Practice?</h2>
+<p class="text-on-surface-variant text-xl">Join the hundreds of veterinary clinics automating their reputation management.</p>
+<div class="flex flex-col md:flex-row gap-4 justify-center pt-4">
+<button class="premium-gradient text-on-primary font-bold px-12 py-5 rounded-lg text-xl shadow-xl hover:brightness-110 transition-all active:scale-95">
+                        Let's talk
+                    </button>
+<button class="bg-surface-container-highest text-on-surface font-semibold px-12 py-5 rounded-lg text-xl border border-outline-variant/20 hover:bg-surface-bright transition-all">
+                        View Demo
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 bg-[#131313] border-t border-[#524534]/15">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="font-headline text-lg text-[#E5E2E1] font-bold">VetRave</span>
+<span class="font-body text-sm tracking-wide text-[#D7C3AE]">© 2024 VetRave. Engineered for Excellence.</span>
+</div>
+<div class="flex gap-8">
+<a class="font-body text-sm tracking-wide text-[#D7C3AE] hover:text-[#F5A623] transition-colors" href="#">Product</a>
+<a class="font-body text-sm tracking-wide text-[#D7C3AE] hover:text-[#F5A623] transition-colors" href="#">Intelligence</a>
+<a class="font-body text-sm tracking-wide text-[#D7C3AE] hover:text-[#F5A623] transition-colors" href="#">Security</a>
+<a class="font-body text-sm tracking-wide text-[#D7C3AE] hover:text-[#F5A623] transition-colors" href="#">Privacy</a>
+<a class="font-body text-sm tracking-wide text-[#D7C3AE] hover:text-[#F5A623] transition-colors" href="#">Network</a>
+</div>
+</div>
+</footer>
+</body></html>
