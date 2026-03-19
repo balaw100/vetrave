@@ -429,9 +429,7 @@ footer .container { display: flex; justify-content: space-between; align-items: 
 <!-- BUILT FOR VETS -->
 <section class="section-alt" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <div class="bfv-inner">
-    <h2 style="font-family:var(--font-display); font-size:clamp(3rem,6vw,4.8rem); font-weight:700; text-align:center; margin-bottom:12px;">Built for <span class="gradient-text">Veterinary Practices</span></h2>
-    <div style="width:60px; height:3px; background:var(--gold); margin:0 auto 20px; border-radius:2px;"></div>
-    <p class="section-sub-center">Veterinary care demands more. So do your review responses.</p>
+    <h2 style="font-family:var(--font-display); font-size:clamp(2.4rem,5vw,3.8rem); font-weight:700; text-align:center; margin-bottom:48px;">Veterinary care demands more.<br><span class="gradient-text">So do your review responses.</span></h2>
     <div class="bfv-list">
       <div class="bfv-item">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
@@ -583,8 +581,7 @@ footer .container { display: flex; justify-content: space-between; align-items: 
     <div class="cta-inner">
       <h2 class="cta-headline">We'd love your input. <span class="gradient-text">Let's talk.</span></h2>
       <p class="cta-sub">VetRave is in active development and we need input from veterinary professionals to help shape the product. If any of this sounds useful, we'd love to hear from you.</p>
-      <button class="btn-primary" onclick="toggleForm()">Contact Us</button>
-      <div class="contact-form-wrap" id="contactForm">
+      <div class="contact-form-wrap" id="contactForm" style="display:block;">
         <form action="https://formspree.io/f/maqpaabj" method="POST" onsubmit="handleSubmit(event)">
           <input type="text" name="name" placeholder="Your name" required>
           <input type="email" name="email" placeholder="Your email" required>
@@ -601,7 +598,7 @@ footer .container { display: flex; justify-content: space-between; align-items: 
 <footer>
   <div class="container">
     <div>
-      <div class="footer-logo">VetRave</div>
+      <div class="footer-logo"><span style="color:#FAFAFA; font-family:var(--font-display); font-size:1.4rem; font-weight:700;">Vet</span><span style="color:#F5A623; font-family:var(--font-display); font-size:1.4rem; font-weight:700;">Rave</span></div>
       <div class="footer-copy">© 2026 VetRave. All rights reserved.</div>
     </div>
     <div class="footer-links">
