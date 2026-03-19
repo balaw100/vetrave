@@ -13,14 +13,14 @@
 <meta property="og:title" content="VetRave — Automatic Google Review Responses for Vets">
 <meta property="og:description" content="VetRave automatically responds to your Google reviews. Built for veterinarians.">
 <meta property="og:site_name" content="VetRave">
-<meta property="og:image" content="https://vetrave.com/og-image.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/balaw100/vetrave/main/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VetRave — Automatic Google Review Responses for Vets">
 <meta name="twitter:description" content="VetRave automatically responds to your Google reviews. Built for veterinarians.">
-<meta name="twitter:image" content="https://vetrave.com/og-image.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/balaw100/vetrave/main/og-image.png">
 
 <script type="application/ld+json">
 {
@@ -101,7 +101,7 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
 
 /* HERO */
 .hero {
-  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  min-height: 80vh; display: flex; align-items: center; justify-content: center;
   padding: 120px 32px 80px; position: relative; overflow: hidden; text-align: center;
 }
 .hero-glow {
@@ -118,9 +118,24 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
   margin-bottom: 24px;
 }
 .hero-kicker {
-  font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+  font-size: 1rem; font-weight: 600; text-transform: uppercase;
   letter-spacing: 0.15em; color: var(--gold); margin-bottom: 20px;
 }
+
+/* TYPEWRITER */
+.tw-wrap {
+  max-width: 620px; margin: 0 auto 48px;
+  display: flex; flex-direction: column; gap: 20px;
+  text-align: left; padding: 32px 36px;
+  background: rgba(28,27,27,0.5); border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.tw-line {
+  font-size: 1.5rem; color: var(--text-muted); line-height: 1.5;
+  min-height: 1.5em; font-weight: 300;
+}
+.tw-line.done { color: var(--text); }
+.tw-line.done .tw-highlight { color: var(--gold); }
 .hero-sub {
   font-size: 1.1rem; color: var(--text-muted); max-width: 560px;
   margin: 0 auto 48px; font-weight: 300; line-height: 1.7;
@@ -345,10 +360,12 @@ footer .container { display: flex; justify-content: space-between; align-items: 
   <div style="position:relative; z-index:1; max-width:900px; margin:0 auto;">
     <div class="hero-kicker">Built for Veterinary Practices</div>
     <h1>All Your Google Reviews<br><span class="gradient-text">Answered Automatically</span></h1>
-    <div class="hero-bullets">
-      <div class="hero-bullet"><span class="hero-bullet-dot">·</span><span>Pet owners choose their next vet from Google reviews.</span></div>
-      <div class="hero-bullet"><span class="hero-bullet-dot">·</span><span>Vets that respond to reviews win more clients.</span></div>
-      <div class="hero-bullet"><span class="hero-bullet-dot">·</span><span>VetRave creates the responses for you, automatically.</span></div>
+
+    <!-- TYPEWRITER BULLETS -->
+    <div class="tw-wrap">
+      <div class="tw-line" id="tw1"></div>
+      <div class="tw-line" id="tw2"></div>
+      <div class="tw-line" id="tw3"></div>
     </div>
     <div class="stat-cards">
       <div class="stat-card">
@@ -431,7 +448,7 @@ footer .container { display: flex; justify-content: space-between; align-items: 
 <!-- BUILT FOR VETS -->
 <section class="section-alt" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <div class="bfv-inner">
-    <h2 style="font-family:var(--font-display); font-size:clamp(2.4rem,5vw,3.8rem); font-weight:700; text-align:center; margin-bottom:12px;">Built for <span class="gradient-text">Veterinary Practices</span></h2>
+    <h2 style="font-family:var(--font-display); font-size:clamp(3rem,6vw,4.8rem); font-weight:700; text-align:center; margin-bottom:12px;">Built for <span class="gradient-text">Veterinary Practices</span></h2>
     <div style="width:60px; height:3px; background:var(--gold); margin:0 auto 20px; border-radius:2px;"></div>
     <p class="section-sub-center">Veterinary care demands more. So do your review responses.</p>
     <div class="bfv-list">
@@ -632,6 +649,37 @@ function handleSubmit(e) {
     }
   });
 }
+
+// Typewriter
+var lines = [
+  { el: 'tw1', text: 'Pet owners choose their vet from Google reviews.', highlight: 'Google reviews' },
+  { el: 'tw2', text: 'Vets that respond to reviews win more clients.', highlight: 'win more clients' },
+  { el: 'tw3', text: 'VetRave creates the responses for you, automatically.', highlight: 'automatically' }
+];
+
+function typeWriter(lineIndex) {
+  if (lineIndex >= lines.length) return;
+  var item = lines[lineIndex];
+  var el = document.getElementById(item.el);
+  var text = item.text;
+  var i = 0;
+  el.classList.add('typing');
+  el.innerHTML = '';
+  var interval = setInterval(function() {
+    i++;
+    el.textContent = text.substring(0, i);
+    if (i >= text.length) {
+      clearInterval(interval);
+      el.classList.add('done');
+      el.innerHTML = text.replace(item.highlight, '<span class="tw-highlight">' + item.highlight + '</span>');
+      setTimeout(function() { typeWriter(lineIndex + 1); }, 300);
+    }
+  }, 28);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() { typeWriter(0); }, 800);
+});
 </script>
 
 </body>
