@@ -556,7 +556,8 @@ footer .container { display: flex; justify-content: space-between; align-items: 
       <p class="cta-sub">We're talking to Vets before we build. We'd love to hear from you.</p>
       <div class="contact-form-wrap" id="contactForm" style="display:block;">
         <form action="https://formspree.io/f/maqpaabj" method="POST" onsubmit="handleSubmit(event)">
-          <input type="text" name="name" placeholder="Your name" required>
+          <input type="hidden" name="_source" value="vetrave-landing">
+          <input type="text" name="name" placeholder="Your name">
           <input type="email" name="email" placeholder="Your email (optional — we won't spam you)">
           <textarea name="message" placeholder="Please tell us about your practice, what features matter most, what you'd pay per month, and how you're handling reviews today."></textarea>
           <button type="submit">Send Message</button>
