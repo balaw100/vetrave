@@ -42,14 +42,6 @@
 }
 </script>
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ET1G13STBC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ET1G13STBC');
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
@@ -89,6 +81,28 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .glass-panel { background: rgba(28, 27, 27, 0.5); backdrop-filter: blur(20px); }
 
 .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+/* BANNER */
+.top-banner {
+  background: rgba(245, 166, 35, 0.08);
+  border-bottom: 1px solid rgba(245, 166, 35, 0.2);
+  padding: 10px 32px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+}
+.top-banner strong { color: var(--gold); }
+.top-banner a {
+  color: var(--gold);
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
+}
 
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -337,10 +351,15 @@ footer .container { display: flex; justify-content: space-between; align-items: 
   .cta-inner { padding: 48px 24px; }
   footer .container { flex-direction: column; text-align: center; }
   .footer-links { flex-wrap: wrap; justify-content: center; }
+  .top-banner { font-size: 0.75rem; padding: 8px 16px; }
+  nav { top: 37px; }
+  .hero { padding-top: 140px; }
 }
 </style>
 </head>
 <body>
+
+
 
 <!-- NAV -->
 <nav>
@@ -354,10 +373,23 @@ footer .container { display: flex; justify-content: space-between; align-items: 
 <section class="hero">
   <div class="hero-glow"></div>
   <div style="position:relative; z-index:1; max-width:900px; margin:0 auto;">
-    <div class="hero-kicker">In development — your input shapes VetRave</div>
+    <div style="
+      display:inline-block;
+      border: 1px solid rgba(245,166,35,0.4);
+      border-radius: 12px;
+      padding: 14px 24px;
+      margin-bottom: 32px;
+      background: rgba(245,166,35,0.06);
+      text-align:center;
+      max-width: 560px;
+    ">
+      <div style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.15em; color:var(--gold); margin-bottom:6px;">In Development · Your Input Shapes VetRave</div>
+      <div style="font-size:0.9rem; color:var(--text-muted); line-height:1.5;">We'd love your thoughts on the site — and how you handle reviews today.<br>Please complete the short feedback form at the bottom of this page.</div>
+    </div>
     <h1>Vets who respond to their Google reviews<br>win more clients</h1>
 
     <p class="hero-subhead">VetRave responds to every review <span style="color:var(--gold);">for you,</span> automatically</p>
+    <!-- STAT CARDS - HIDDEN FOR NOW
     <div class="stat-cards">
       <div class="stat-card">
         <div class="stat-num">81%</div>
@@ -369,11 +401,16 @@ footer .container { display: flex; justify-content: space-between; align-items: 
         <div class="stat-label">more money spent at businesses<br>that respond to reviews</div>
         <div style="font-size:0.65rem; color:var(--text-dim); font-style:italic; margin-top:6px;">— Womply, 200K Business Study</div>
       </div>
+    END HIDDEN -->
+    <div style="margin-top:40px;">
+      <div class="stat-card" style="display:inline-block; text-align:left;">
+        <div class="stat-num">58%</div>
+        <div class="stat-label">more money spent at businesses<br>that respond to reviews</div>
+        <div style="font-size:0.65rem; color:var(--text-dim); font-style:italic; margin-top:6px;">— Womply, 200K Business Study</div>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- EXAMPLE SECTION -->
 <section class="section-alt">
   <div class="example-grid">
     <div>
@@ -402,7 +439,7 @@ footer .container { display: flex; justify-content: space-between; align-items: 
   </div>
 </section>
 
-<!-- FEATURES BENTO GRID -->
+<!-- FEATURES BENTO GRID - HIDDEN FOR NOW
 <section>
   <div class="bento-grid">
     <div class="bento-card wide">
@@ -435,6 +472,7 @@ footer .container { display: flex; justify-content: space-between; align-items: 
     </div>
   </div>
 </section>
+END HIDDEN -->
 
 <!-- ANALYTICS -->
 <section class="section-dim">
@@ -523,7 +561,7 @@ footer .container { display: flex; justify-content: space-between; align-items: 
   </div>
 </section>
 
-<!-- SETUP STEPS -->
+<!-- SETUP STEPS - HIDDEN FOR NOW
 <section>
   <div class="steps-inner">
     <h2 class="steps-headline">Three minutes to set up.<br><span style="color:var(--gold);">Zero minutes to maintain.</span></h2>
@@ -553,8 +591,7 @@ footer .container { display: flex; justify-content: space-between; align-items: 
     </div>
   </div>
 </section>
-
-
+END HIDDEN -->
 
 <!-- CTA -->
 <section id="contact">
@@ -597,10 +634,6 @@ function toggleForm() {
 function handleSubmit(e) {
   e.preventDefault();
   var form = e.target;
-  gtag('event', 'form_submit', {
-    'event_category': 'contact',
-    'event_label': 'vetrave_contact_form'
-  });
   fetch(form.action, {
     method: 'POST',
     body: new FormData(form),
@@ -612,8 +645,6 @@ function handleSubmit(e) {
     }
   });
 }
-
-// nothing
 </script>
 
 </body>
