@@ -4,7 +4,687 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>VetRave — Automatic Goog<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>VetRave — Automatic Google Review Responses for Vets</title>
+<meta name="description" content="VetRave automatically responds to your Google reviews. Built for veterinarians.">
+<link rel="canonical" href="https://vetrave.com">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vetrave.com">
+<meta property="og:title" content="VetRave — Automatic Google Review Responses for Vets">
+<meta property="og:description" content="VetRave automatically responds to your Google reviews. Built for veterinarians.">
+<meta property="og:site_name" content="VetRave">
+<meta property="og:image" content="https://raw.githubusercontent.com/balaw100/vetrave/main/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VetRave — Automatic Google Review Responses for Vets">
+<meta name="twitter:description" content="VetRave automatically responds to your Google reviews. Built for veterinarians.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/balaw100/vetrave/main/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "VetRave",
+  "url": "https://vetrave.com",
+  "description": "VetRave automatically responds to Google reviews for veterinary practices. Includes sentiment tracking and QR code review generation.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Veterinary Practices"
+  },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/PreOrder"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,1&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold: #F5A623;
+  --gold-light: #FFC880;
+  --gold-dark: #D4891A;
+  --bg: #131313;
+  --bg-card: #1C1B1B;
+  --bg-card-high: #2A2A2A;
+  --bg-card-highest: #353534;
+  --bg-dim: #0E0E0E;
+  --text: #E5E2E1;
+  --text-muted: #D7C3AE;
+  --text-dim: #9F8E7A;
+  --border: rgba(82, 69, 52, 0.3);
+  --border-gold: rgba(245, 166, 35, 0.2);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --max-width: 1200px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 32px; }
+.gradient-text {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-style: italic;
+}
+.premium-gradient { background: radial-gradient(circle at top left, var(--gold-light), var(--gold)); }
+.glass-panel { background: rgba(28, 27, 27, 0.5); backdrop-filter: blur(20px); }
+
+.material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+/* BANNER */
+.top-banner {
+  background: rgba(245, 166, 35, 0.08);
+  border-bottom: 1px solid rgba(245, 166, 35, 0.2);
+  padding: 10px 32px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+}
+.top-banner strong { color: var(--gold); }
+.top-banner a {
+  color: var(--gold);
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(28, 27, 27, 0.5); backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  padding: 16px 0;
+}
+nav .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { display: flex; align-items: center; gap: 0; text-decoration: none; }
+.logo-text { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+.logo-text span { color: var(--gold); }
+.logo-icon { width: 32px; height: 32px; }
+.nav-cta {
+  background: var(--bg-card-high); color: var(--text);
+  padding: 10px 24px; border-radius: 8px; text-decoration: none;
+  font-weight: 600; font-size: 0.9rem; border: none; cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--bg-card-highest); }
+
+/* HERO */
+.hero {
+  display: flex; align-items: center; justify-content: center;
+  padding: 120px 32px 20px; position: relative; overflow: hidden; text-align: center;
+}
+.hero-glow {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(245,166,35,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+.hero-kicker {
+  font-size: 1rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.15em; color: var(--gold); margin-bottom: 20px;
+}
+
+.hero-subhead {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 600; color: var(--text-muted);
+  max-width: 700px; margin: 40px auto 48px;
+  line-height: 1.3;
+}
+.hero-sub {
+  font-size: 1.1rem; color: var(--text-muted); max-width: 560px;
+  margin: 0 auto 48px; font-weight: 300; line-height: 1.7;
+}
+
+/* STAT CARDS */
+.stat-cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 0; }
+.stat-card {
+  background: rgba(28,27,27,0.5); backdrop-filter: blur(20px);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 24px 32px; text-align: left; min-width: 200px;
+}
+.stat-num { font-family: var(--font-display); font-size: 2.4rem; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+.stat-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-dim); }
+
+/* HERO BULLETS */
+.hero-bullets {
+  max-width: 480px; margin: 0 auto 48px;
+  background: rgba(28,27,27,0.5); border: 1px solid var(--border);
+  border-radius: 14px; padding: 24px 28px;
+  display: flex; flex-direction: column; gap: 14px; text-align: left;
+}
+.hero-bullet { display: flex; align-items: baseline; gap: 12px; font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
+.hero-bullet-dot { color: var(--gold); font-size: 1.4rem; line-height: 1; flex-shrink: 0; }
+
+/* SECTIONS */
+section { padding: 96px 0; }
+.section-alt { background: rgba(20,20,20,0.8); }
+.section-dim { background: var(--bg-dim); }
+
+/* EXAMPLE SECTION */
+.example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: var(--max-width); margin: 0 auto; padding: 0 32px; }
+.example-headline { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 20px; }
+.example-sub { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; }
+.review-card {
+  background: var(--bg-card-highest); padding: 24px; border-radius: 14px;
+  border-left: 4px solid rgba(245,166,35,0.4);
+  transform: rotate(-2.5deg); margin-bottom: -20px; position: relative; z-index: 1;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+.review-author { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.review-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--bg-card-high); display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem; color: var(--gold);
+}
+.review-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 2px; }
+.review-stars { color: var(--gold); font-size: 0.75rem; }
+.review-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+.response-card {
+  background: var(--bg-card); padding: 28px; border-radius: 14px;
+  border: 1px solid var(--border-gold);
+  transform: rotate(2deg); position: relative; z-index: 2;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+}
+.response-tag { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.response-tag span { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); }
+.response-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; font-style: italic; }
+
+/* BENTO GRID */
+.bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: var(--max-width); margin: 0 auto; padding: 0 32px; }
+.bento-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px; transition: background 0.2s;
+}
+.bento-card:hover { background: var(--bg-card-high); }
+.bento-card.wide { grid-column: span 2; }
+.bento-icon { margin-bottom: 24px; }
+.bento-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; margin-bottom: 14px; }
+.bento-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+/* ANALYTICS */
+.analytics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: var(--max-width); margin: 0 auto; padding: 0 32px; }
+.analytics-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; }
+.analytics-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+.analytics-title { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
+.analytics-value { color: var(--gold); font-size: 0.85rem; font-weight: 600; }
+.bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 140px; }
+.bar { flex: 1; border-radius: 4px 4px 0 0; background: rgba(245,166,35,0.2); }
+.bar.active { background: rgba(245,166,35,0.8); box-shadow: 0 0 20px rgba(255,200,128,0.3); }
+.sentiment-bar { margin-bottom: 20px; }
+.sentiment-label { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; color: var(--text-dim); margin-bottom: 8px; }
+.sentiment-track { height: 8px; background: var(--bg-card-highest); border-radius: 4px; overflow: hidden; }
+.sentiment-fill { height: 100%; border-radius: 4px; }
+.sentiment-fill.positive { background: radial-gradient(circle at left, var(--gold-light), var(--gold)); }
+.sentiment-fill.neutral { background: var(--bg-card-highest); border: 1px solid var(--border); }
+.sentiment-fill.negative { background: rgba(255,100,100,0.5); }
+
+/* QR SECTION */
+.qr-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: var(--max-width); margin: 0 auto; padding: 0 32px; }
+.qr-headline { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 20px; }
+.qr-sub { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 32px; }
+.qr-checks { display: flex; flex-direction: column; gap: 16px; }
+.qr-check { display: flex; align-items: center; gap: 12px; font-size: 0.95rem; }
+.qr-check svg { flex-shrink: 0; }
+.qr-frame {
+  background: var(--bg); border: 8px solid var(--border); border-radius: 24px;
+  padding: 40px; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; position: relative; box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  max-width: 280px; margin: 0 auto;
+}
+.qr-badge {
+  position: absolute; top: -16px; right: -16px;
+  background: var(--gold); color: var(--bg); font-weight: 700;
+  font-size: 0.7rem; padding: 6px 14px; border-radius: 20px; letter-spacing: 0.08em;
+}
+.qr-title-text { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; text-align: center; }
+.qr-title-text em { font-style: normal; color: var(--gold); }
+.qr-box { width: 140px; height: 140px; background: #FAFAFA; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.qr-grid-svg { width: 100px; height: 100px; display: grid; grid-template-columns: repeat(7,1fr); grid-template-rows: repeat(7,1fr); gap: 2px; }
+.qc { border-radius: 1px; }
+.qc.d { background: #0A0A0A; }
+.qc.l { background: #FAFAFA; }
+.qr-label { font-size: 0.75rem; color: var(--text-dim); text-align: center; }
+.qr-sublabel { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-top: 10px; text-align: center; }
+
+/* SETUP STEPS */
+.steps-inner { max-width: 680px; margin: 0 auto; padding: 0 32px; }
+.steps-headline { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; text-align: center; margin-bottom: 64px; }
+.steps-list { position: relative; display: flex; flex-direction: column; gap: 48px; }
+.steps-line { position: absolute; left: 27px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+.step-item { display: flex; gap: 32px; align-items: flex-start; position: relative; }
+.step-num {
+  width: 56px; height: 56px; border-radius: 50%; background: var(--bg-card-highest);
+  border: 1px solid var(--border-gold); display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--gold);
+  flex-shrink: 0; z-index: 2;
+}
+.step-content h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.step-content p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+/* BUILT FOR VETS */
+.bfv-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 32px; }
+.section-headline-center { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; text-align: center; margin-bottom: 16px; }
+.section-sub-center { color: var(--text-muted); text-align: center; margin-bottom: 64px; font-size: 1.05rem; }
+.bfv-list { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+.bfv-item { display: flex; align-items: flex-start; gap: 18px; }
+.bfv-item span { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+
+/* CTA */
+.cta-inner {
+  max-width: 560px; margin: 0 auto; padding: 56px 48px;
+  background: rgba(28,27,27,0.5); backdrop-filter: blur(20px);
+  border: 1px solid var(--border-gold); border-radius: 24px;
+  text-align: center; box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+.cta-headline { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 12px; }
+.cta-sub { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 32px; max-width: 420px; margin-left: auto; margin-right: auto; }
+.btn-primary {
+  display: inline-block; background: radial-gradient(circle at top left, var(--gold-light), var(--gold));
+  color: #291800; font-weight: 700; font-size: 1.1rem;
+  padding: 18px 48px; border-radius: 10px; border: none; cursor: pointer;
+  transition: all 0.2s; text-decoration: none;
+}
+.btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+/* CONTACT FORM */
+.contact-form-wrap { max-width: 520px; margin: 32px auto 0; display: none; text-align: left; }
+.contact-form-wrap.open { display: block; }
+.contact-form-wrap form { display: flex; flex-direction: column; gap: 16px; }
+.contact-form-wrap input, .contact-form-wrap textarea {
+  width: 100%; background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 10px 14px; color: var(--text); font-family: var(--font-body);
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s;
+}
+.contact-form-wrap input:focus, .contact-form-wrap textarea:focus { border-color: var(--gold); }
+.contact-form-wrap input::placeholder, .contact-form-wrap textarea::placeholder { color: var(--text-dim); }
+.contact-form-wrap textarea { resize: vertical; min-height: 120px; }
+.contact-form-wrap button[type="submit"] {
+  background: radial-gradient(circle at top left, var(--gold-light), var(--gold));
+  color: #291800; border: none; border-radius: 8px; padding: 14px;
+  font-weight: 700; font-size: 1rem; cursor: pointer; font-family: var(--font-body);
+  transition: all 0.2s;
+}
+.contact-form-wrap button[type="submit"]:hover { filter: brightness(1.1); }
+.form-success { display: none; color: var(--gold); font-size: 1rem; margin-top: 16px; text-align: center; }
+
+/* FOOTER */
+footer {
+  background: var(--bg-dim); border-top: 1px solid var(--border);
+  padding: 48px 0;
+}
+footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+.footer-logo { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+.footer-links { display: flex; gap: 32px; }
+.footer-links a { font-size: 0.85rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .example-grid, .bento-grid, .analytics-grid, .qr-inner { grid-template-columns: 1fr; }
+  .bento-card.wide { grid-column: span 1; }
+  .steps-line { display: none; }
+  .cta-inner { padding: 48px 24px; }
+  footer .container { flex-direction: column; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+  .top-banner { font-size: 0.75rem; padding: 8px 16px; }
+  nav { top: 37px; }
+  .hero { padding-top: 140px; }
+}
+</style>
+</head>
+<body>
+
+
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="#" class="logo"><span class="material-symbols-outlined" style="color:#F5A623; font-size:1.8rem; margin-right:6px; vertical-align:middle;">pets</span><span style="font-family:var(--font-display); font-size:1.8rem; font-weight:700; letter-spacing:-0.02em; color:#FAFAFA;">Vet</span><span style="font-family:var(--font-display); font-size:1.8rem; font-weight:700; letter-spacing:-0.02em; color:#F5A623;">Rave</span></a>
+    <a href="#contact" class="nav-cta">Let's Talk</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div style="position:relative; z-index:1; max-width:900px; margin:0 auto;">
+    <div style="
+      display:inline-block;
+      border: 1px solid rgba(245,166,35,0.4);
+      border-radius: 12px;
+      padding: 14px 24px;
+      margin-bottom: 32px;
+      background: rgba(245,166,35,0.06);
+      text-align:center;
+      max-width: 560px;
+    ">
+      <div style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.15em; color:var(--gold); margin-bottom:6px;">In Development · Your Input Shapes VetRave</div>
+      <div style="font-size:0.9rem; color:var(--text-muted); line-height:1.5;">We'd love your thoughts from a veterinarian's perspective. Please complete the short feedback form at the bottom of this page.</div>
+      <div style="margin-top:10px; padding-top:10px; border-top:1px solid rgba(245,166,35,0.2); font-size:0.85rem; color:var(--text-muted);">Below is VetRave as we're envisioning it. We'd love your reaction.</div>
+      <div style="margin-top:10px; padding-top:10px; border-top:1px solid rgba(245,166,35,0.2); font-size:0.85rem; color:var(--text-muted);">Prefer to talk? Call or text the founder directly — <span style="color:var(--gold); font-weight:600;">(805) 665-3810</span></div>
+    </div>
+    <h1>Vets who respond to their Google reviews<br>win more clients</h1>
+
+    <p class="hero-subhead">VetRave responds to every review for you, <span style="color:var(--gold);">automatically</span></p>
+    <!-- STAT CARDS - HIDDEN FOR NOW
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="stat-num">81%</div>
+        <div class="stat-label">of consumers check Google reviews<br>before choosing a business</div>
+        <div style="font-size:0.65rem; color:var(--text-dim); font-style:italic; margin-top:6px;">— BrightLocal, 2024</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">58%</div>
+        <div class="stat-label">more money spent at businesses<br>that respond to reviews</div>
+        <div style="font-size:0.65rem; color:var(--text-dim); font-style:italic; margin-top:6px;">— Womply, 200K Business Study</div>
+      </div>
+    END HIDDEN -->
+    <div style="margin-top:40px;">
+      <div class="stat-card" style="display:inline-block; text-align:left;">
+        <div class="stat-num">58%</div>
+        <div class="stat-label">Increase in business for practices that respond to reviews</div>
+        <div style="font-size:0.65rem; color:var(--text-dim); font-style:italic; margin-top:6px;">— Womply, 200K Business Study</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section-alt">
+  <div style="max-width:var(--max-width); margin:0 auto; padding:0 32px;">
+
+    <h2 class="example-headline" style="text-align:center; margin-bottom:48px;">Here's how VetRave works</h2>
+
+    <div style="background:var(--bg-card); border:1px solid var(--border-gold); border-radius:24px; padding:48px; box-shadow:0 24px 60px rgba(0,0,0,0.4);">
+
+      <div class="example-grid" style="margin-bottom:48px;">
+        <div style="display:flex; flex-direction:column; justify-content:center;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <h4 style="font-family:var(--font-display); font-size:1.1rem; font-weight:700; color:var(--text);">Responds with empathy, expertise — automatically</h4>
+          </div>
+          <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.6;">Every response is tailored to your veterinary practice — warm, professional, and specific to the review.</p>
+        </div>
+        <div style="position:relative; padding:20px 0 20px 0;">
+          <div class="review-card">
+            <div class="review-author">
+              <div class="review-avatar">SJ</div>
+              <div>
+                <div class="review-name">Sarah Jenkins</div>
+                <div class="review-stars">★★★★☆</div>
+              </div>
+            </div>
+            <p class="review-text">"Love Dr. Chen — she's great with our dog Barkley. Only reason for 4 stars is the wait was almost 45 minutes."</p>
+          </div>
+          <div class="response-card" style="margin-top:12px;">
+            <div class="response-tag">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span>VetRave Response</span>
+            </div>
+            <p class="response-text">Dr. Chen loved seeing Barkley, Sarah! We're very sorry about the wait — 45 minutes isn't the experience we want for you. We're working on it and hope to see you both again soon.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border); margin-bottom:40px;"></div>
+
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:32px;">
+        <div style="background:var(--bg-card-high); border-radius:16px; padding:28px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+            <h4 style="font-family:var(--font-display); font-size:1.1rem; font-weight:700; color:var(--text);">We keep you in control</h4>
+          </div>
+          <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.6;">As you begin working with us, you'll review every response before it posts. When you learn to trust us, flip it to automatic.</p>
+        </div>
+        <div style="background:var(--bg-card-high); border-radius:16px; padding:28px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <h4 style="font-family:var(--font-display); font-size:1.1rem; font-weight:700; color:var(--text);">Sensitive reviews always come to you</h4>
+          </div>
+          <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.6;">Legal concerns, difficult complaints, loss of a pet — we flag those and send them straight to you. We never auto-respond to a review that needs a human.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES BENTO GRID - HIDDEN FOR NOW
+<section>
+  <div class="bento-grid">
+    <div class="bento-card wide">
+      <div class="bento-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
+      </div>
+      <h3 class="bento-title">We speak Vet</h3>
+      <p class="bento-text">VetRave is built to handle the sensitive concerns and heartfelt praise that comes with running a veterinary practice. Choose your reply style so that it matches your voice.</p>
+    </div>
+    <div class="bento-card">
+      <div class="bento-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <h3 class="bento-title">Sensitive reviews get flagged</h3>
+      <p class="bento-text">Legal concerns, complaints about outcomes, or anything needing a personal touch — we send it to you instead of responding.</p>
+    </div>
+    <div class="bento-card">
+      <div class="bento-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><path d="M18 8H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2z"/><circle cx="12" cy="15" r="1.5"/></svg>
+      </div>
+      <h3 class="bento-title">The right tone, every time</h3>
+      <p class="bento-text">Every review gets a response that fits — warm for praise, empathetic for complaints, careful when something sensitive is mentioned.</p>
+    </div>
+    <div class="bento-card wide">
+      <div class="bento-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+      </div>
+      <h3 class="bento-title">Always on — you decide when it's automatic</h3>
+      <p class="bento-text">When you start with VetRave, you review every response before it posts. When you trust us, flip to auto. You're always in control.</p>
+    </div>
+  </div>
+</section>
+END HIDDEN -->
+
+<!-- ANALYTICS -->
+<section class="section-dim">
+  <div style="text-align:center; margin-bottom:64px; padding:0 32px;">
+    <h2 style="font-family:var(--font-display); font-size:clamp(2rem,4vw,3rem); font-weight:700; margin-bottom:12px;">Plus — Your Reviews, <span class="gradient-text">Reviewed</span></h2>
+    <p style="color:var(--text-muted); font-size:1.05rem;">We read all your reviews and show you the trends.</p>
+  </div>
+  <div class="analytics-grid">
+    <div class="analytics-card">
+      <div class="analytics-header">
+        <span class="analytics-title">Review Volume Trend</span>
+        <span class="analytics-value">+12% this month</span>
+      </div>
+      <div class="bar-chart">
+        <div class="bar" style="height:60%"></div>
+        <div class="bar" style="height:45%"></div>
+        <div class="bar" style="height:70%"></div>
+        <div class="bar" style="height:40%"></div>
+        <div class="bar" style="height:80%"></div>
+        <div class="bar active" style="height:90%"></div>
+        <div class="bar" style="height:50%"></div>
+      </div>
+    </div>
+    <div class="analytics-card">
+      <div class="analytics-header">
+        <span class="analytics-title">Client Sentiment Score</span>
+        <span class="analytics-value">92/100</span>
+      </div>
+      <div class="sentiment-bar">
+        <div class="sentiment-label"><span>POSITIVE</span><span>92%</span></div>
+        <div class="sentiment-track"><div class="sentiment-fill positive" style="width:92%"></div></div>
+      </div>
+      <div class="sentiment-bar">
+        <div class="sentiment-label"><span>NEUTRAL</span><span>6%</span></div>
+        <div class="sentiment-track"><div class="sentiment-fill neutral" style="width:6%"></div></div>
+      </div>
+      <div class="sentiment-bar">
+        <div class="sentiment-label"><span>NEGATIVE</span><span>2%</span></div>
+        <div class="sentiment-track"><div class="sentiment-fill negative" style="width:2%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QR SECTION -->
+<section class="section-alt">
+  <div class="qr-inner">
+    <div>
+      <h2 class="qr-headline">And — A Beautiful <span style="color:var(--gold);">QR Code</span> for Your Lobby</h2>
+      <p style="font-family:var(--font-display); font-size:clamp(1.1rem, 2vw, 1.5rem); font-weight:600; color:var(--text-muted); line-height:1.4; margin-bottom:32px;">Clients scan it on the way out — and land immediately on your Google review page.</p>
+      <div class="qr-checks">
+        <div class="qr-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Branded QR frames for your reception area</span>
+        </div>
+        <div class="qr-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>More scans means more reviews — and more reviews means more new clients.</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="qr-frame">
+        <div class="qr-badge">SCAN ME</div>
+        <div class="qr-title-text"><em>Paws</em> for a Review</div>
+        <div class="qr-box">
+          <div class="qr-grid-svg">
+            <div class="qc d"></div><div class="qc d"></div><div class="qc d"></div><div class="qc l"></div><div class="qc d"></div><div class="qc d"></div><div class="qc d"></div>
+            <div class="qc d"></div><div class="qc l"></div><div class="qc d"></div><div class="qc d"></div><div class="qc d"></div><div class="qc l"></div><div class="qc d"></div>
+            <div class="qc d"></div><div class="qc d"></div><div class="qc l"></div><div class="qc l"></div><div class="qc d"></div><div class="qc d"></div><div class="qc d"></div>
+            <div class="qc l"></div><div class="qc d"></div><div class="qc l"></div><div class="qc d"></div><div class="qc l"></div><div class="qc d"></div><div class="qc l"></div>
+            <div class="qc d"></div><div class="qc d"></div><div class="qc d"></div><div class="qc l"></div><div class="qc l"></div><div class="qc d"></div><div class="qc d"></div>
+            <div class="qc d"></div><div class="qc l"></div><div class="qc d"></div><div class="qc d"></div><div class="qc d"></div><div class="qc l"></div><div class="qc d"></div>
+            <div class="qc d"></div><div class="qc d"></div><div class="qc d"></div><div class="qc l"></div><div class="qc d"></div><div class="qc d"></div><div class="qc d"></div>
+          </div>
+        </div>
+        <div class="qr-label">Scan to leave us a review</div>
+        <div class="qr-sublabel">Riverside Animal Clinic</div>
+        <div style="font-size:0.65rem; color:var(--text-dim); text-align:center;">Dr. Amy Patel, DVM</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP STEPS - HIDDEN FOR NOW
+<section>
+  <div class="steps-inner">
+    <h2 class="steps-headline">Three minutes to set up.<br><span style="color:var(--gold);">Zero minutes to maintain.</span></h2>
+    <div class="steps-list">
+      <div class="steps-line"></div>
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Grant Review Access</h4>
+          <p>Grant VetRave permission to respond to reviews on your Google Business Profile. Takes 60 seconds.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Pick Your Style</h4>
+          <p>Choose a response style — warm, professional, friendly, casual, or concise. Change it anytime.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Reviews Get Answered</h4>
+          <p>Your clients feel heard. You get more business. And it's completely automated.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+END HIDDEN -->
+
+<!-- CTA -->
+<section id="contact">
+  <div style="padding:0 32px;">
+    <p style="text-align:center; font-size:0.95rem; color:var(--text-muted); margin-bottom:20px;">Prefer to talk? Call or text the founder directly — <span style="color:var(--gold); font-weight:600;">(805) 665-3810</span></p>
+    <div class="cta-inner">
+      <h2 class="cta-headline">Please help us build <span style="color:var(--gold);">VetRave</span> right.</h2>
+      <p class="cta-sub">We're talking to vets before we build. We'd love to hear from you.</p>
+      <div class="contact-form-wrap" id="contactForm" style="display:block;">
+        <form action="https://formspree.io/f/maqpaabj" method="POST" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="_source" value="vetrave-landing">
+          <input type="text" name="name" placeholder="Your name">
+          <input type="email" name="email" placeholder="Your email (optional — we won't spam you)">
+          <textarea name="message" placeholder="Suggested content: How do you handle reviews today? What features matter most? What would you pay per month for VetRave? Thanks!"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      <p class="form-success" id="formSuccess">Thank you — we really appreciate your input. If you left your email, we'll be in touch soon. Either way, your feedback is helping shape VetRave.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>
+      <div class="footer-logo"><span class="material-symbols-outlined" style="color:#F5A623; font-size:1.4rem; vertical-align:middle; margin-right:4px; line-height:1;">pets</span><span style="color:#FAFAFA; font-family:var(--font-display); font-size:1.4rem; font-weight:700; vertical-align:middle;">Vet</span><span style="color:#F5A623; font-family:var(--font-display); font-size:1.4rem; font-weight:700; vertical-align:middle;">Rave</span></div>
+      <div class="footer-copy">© 2026 VetRave. All rights reserved.</div>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleForm() {
+  var form = document.getElementById('contactForm');
+  form.classList.toggle('open');
+}
+function handleSubmit(e) {
+  e.preventDefault();
+  var form = e.target;
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(function(response) {
+    if (response.ok) {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    }
+  });
+}
+</script>
+
+</body>
+</html>le Review Responses for Vets</title>
 <meta name="description" content="VetRave automatically responds to your Google reviews. Built for veterinarians.">
 <link rel="canonical" href="https://vetrave.com">
 
